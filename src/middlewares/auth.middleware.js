@@ -5,11 +5,11 @@ import { User } from "../models/user.model.js";
 
 export const verifyJWT = asyncHandler(async (req, _, next) => {
     try {
-        // console.log("Cookies", req.cookies);
-        // console.log("Headers", req.headers);
+         console.log("Cookies", req.cookies);
+         console.log("Headers", req.headers);
         
-        const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
-        // console.log("Received Token:", token); // Debugging log
+        const token = req.Cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
+        console.log("Received Token:", token); // Debugging log
 
         if (!token) {
             throw new ApiError(401, "Unauthorized request: Token missing");
@@ -27,6 +27,6 @@ export const verifyJWT = asyncHandler(async (req, _, next) => {
         next();
     } catch (error) {
         console.error("JWT Verification Error:", error); // Debugging log
-        throw new ApiError(401, error?.message || "Invalid access token");
+        throw Error(401, error?.message || "Invalid access token");
     }
 });
